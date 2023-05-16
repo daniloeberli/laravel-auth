@@ -17,6 +17,11 @@
                       <p class="card-text">{{$project->description}}</p>
                       <a href="#" class="btn btn-sm btn-primary">Show</a>
                       <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                      <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                    </form>
                     </div>
                   </div>
             </div>
