@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <a href="{{route('admin.projects.index')}}">Go back to the projects</a>
     <h2 class="fs-4 text-secondary my-4">
         {{$project->title}}
     </h2>
