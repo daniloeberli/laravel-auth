@@ -13,7 +13,9 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">{{$project->title}}</h5>
+                      <h5 class="card-title"> @if ($project->image) <a href="#" class="btn btn-sm btn-success">Image </a>
+                          
+                      @endif  {{$project->title}}</h5>
                       <h6 class="card-subtitle mb-2 text-body-secondary">{{$project->stack}}</h6>
                       <p class="card-text">{{$project->description}}</p>
                       <a href="{{route('admin.projects.show',$project->id)}}" class="btn btn-sm btn-primary">Show</a>

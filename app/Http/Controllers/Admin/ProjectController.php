@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('admin.projects.index',compact('projects'));
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -47,10 +47,10 @@ class ProjectController extends Controller
         $new_project->fill($data);
 
         $new_project->slug = Str::slug($new_project->title, '-');
-        if(isset($data['image'])){
+        if (isset($data['image'])) {
             $new_project->image = Storage::put('uploads', $data['image']);
         }
-        
+
         $new_project->save();
         return to_route('admin.projects.show', $new_project->id);
     }
@@ -90,7 +90,16 @@ class ProjectController extends Controller
 
         $data = $request->all();
         $project->update($data);
-        $project->slug = Str::slug($project->title,'-');
+        $project->slug = Str::slug($project->title, '-');
+
+        if (isset($data['image'])) {
+
+            if($project->image){
+                Storage::delete($project->image);
+            }
+
+            $project->image = Storage::put('uploads', $data['image']);
+        }
         $project->save();
 
         return to_route('admin.projects.show', $project->id)->with('message', 'Hai modificato con successo il progetto');

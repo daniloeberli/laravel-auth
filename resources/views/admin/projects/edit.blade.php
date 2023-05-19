@@ -16,7 +16,7 @@
             <h2 class="fs-4 text-secondary my-4">Edit Project</h2>
         </div>
 
-        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+        <form action="{{ route('admin.projects.update', $project->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -32,6 +32,10 @@
                 <label for="stack" class="form-label">Project stack</label>
                 <textarea class="form-control" id="stack" name="stack" rows="3">{{ strip_tags( $project->stack ) }}</textarea>
             </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="image" name="image">
+              </div>
             <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
         </form>
     </div>
